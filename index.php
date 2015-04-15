@@ -5,6 +5,7 @@
 	
 	class VulnStatus
 	{
+		const FAIL        = 0;
 		const VULN        = 1;
 		const VULN_NOT_MS = 2;
 		const PATCHED     = 3;
@@ -16,6 +17,7 @@
 		{
 			switch( $status )
 			{
+				case self::FAIL       : return '<div class="alert alert-warning">Couldn\'t connect to <b>' . $host . '</b> to test the vulnerability.</div>';
 				case self::VULN       : return '<div class="alert alert-danger"><b>' . $host . '</b> is vulnerable.</div>';
 				case self::VULN_NOT_MS: return '<div class="alert alert-warning"><b>' . $host . '</b> could be vulnerable, but it doesn\'t appear to be using IIS.</div>';
 				case self::PATCHED    : return '<div class="alert alert-success"><b>' . $host . '</b> is patched.</div>';
@@ -56,7 +58,7 @@
 			
 			if( $fp === false )
 			{
-				$status = '<div class="alert alert-warning">' . htmlspecialchars( trim( $errstr ), ENT_HTML5 ) . '</div>';
+				$status = VulnStatus::FAIL;
 			}
 			else
 			{
@@ -96,13 +98,13 @@
 				{
 					$status = VulnStatus::NOT_VULN_MS;
 				}
-				
-				unset( $fp, $header, $response );
-				
-				$memcached->set( 'ms15034_' . $url, $status, 300 );
-				
-				$status = VulnStatus::AsString( $status, $host );
 			}
+			
+			unset( $fp, $header, $response );
+			
+			$memcached->set( 'ms15034_' . $url, $status, 300 );
+			
+			$status = VulnStatus::AsString( $status, $host );
 		}
 	}
 ?>

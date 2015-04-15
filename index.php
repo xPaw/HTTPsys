@@ -153,6 +153,12 @@
 			text-align: center;
 			margin-bottom: 20px;
 		}
+		
+		.github {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
 	</style>
 </head>
 <body>
@@ -162,6 +168,10 @@
 			<h3>Enter a URL or a hostname to test the server for <a href="https://technet.microsoft.com/en-us/library/security/ms15-034.aspx" target="_blank">MS15-034</a> / <a href="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1635" target="_blank">CVE-2015-1635</a>.</h3>
 		</div>
 	</div>
+	
+	<a href="https://github.com/xPaw/HTTPsys">
+		<img class="github" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub">
+	</a>
 	
 	<div class="container">
 		<blockquote>
@@ -178,7 +188,7 @@
 		
 		<?php if( $status !== false ) { echo $status; } ?>
 		
-		<div class="footer">Made with <span>♥</span> by <a href="http://xpaw.me" target="_blank">xPaw</a> (<a href="https://twitter.com/thexpaw" target="_blank">@thexpaw</a>) | All results are cached for five minutes | <a href="https://github.com/xPaw/HTTPsys" target="_blank">View on GitHub</a></div>
+		<div class="footer">Made with <span>♥</span> by <a href="http://xpaw.me" target="_blank">xPaw</a> (<a href="https://twitter.com/thexpaw" target="_blank">@thexpaw</a>) | All results are cached for five minutes</div>
 	</div>
 </body>
 </html>

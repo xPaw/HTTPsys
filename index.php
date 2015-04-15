@@ -34,7 +34,7 @@
 	$status = false;
 	$url = filter_input( INPUT_GET, 'host', FILTER_SANITIZE_URL );
 	
-	if( parse_url( $url, PHP_URL_SCHEME ) === null )
+	if( !empty( $url ) && parse_url( $url, PHP_URL_SCHEME ) === null )
 	{
 		$url = 'http://' . $url;
 	}

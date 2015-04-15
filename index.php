@@ -63,11 +63,9 @@
 		$memcached = new Memcached( );
 		$memcached->addServer( '/var/run/memcached/memcached.sock', 0 );
 		
-		if( $status = $memcached->get( $cachekey ) )
-		{
-			$status = VulnStatus::AsString( $status, $host );
-		}
-		else
+		$status = $memcached->get( $cachekey );
+		
+		if( $status === false )
 		{
 			$fp = @fsockopen( $url, $port, $errno, $errstr, 5 );
 			
@@ -119,9 +117,9 @@
 			unset( $fp, $header, $response );
 			
 			$memcached->set( $cachekey, $status, $cachetime );
-			
-			$status = VulnStatus::AsString( $status, $host );
 		}
+		
+		$status = VulnStatus::AsString( $status, $host );
 	}
 ?>
 <!DOCTYPE HTML>

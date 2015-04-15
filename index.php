@@ -39,6 +39,13 @@
 		$url = 'http://' . $url;
 	}
 	
+	$port = parse_url( $url, PHP_URL_PORT );
+	
+	if( $port === null )
+	{
+		$port = 80;
+	}
+	
 	$url = parse_url( $url, PHP_URL_HOST );
 	
 	if( $url !== null )
@@ -54,7 +61,7 @@
 		}
 		else
 		{
-			$fp = @fsockopen( $url, 80, $errno, $errstr, 5 );
+			$fp = @fsockopen( $url, $port, $errno, $errstr, 5 );
 			
 			if( $fp === false )
 			{

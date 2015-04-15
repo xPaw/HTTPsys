@@ -39,21 +39,26 @@
 		$url = 'http://' . $url;
 	}
 	
+	$port = parse_url( $url, PHP_URL_PORT );
+	
+	if( $port === null )
+	{
+		$port = 80;
+	}
+	
 	$url = parse_url( $url, PHP_URL_HOST );
 	
 	if( $url !== null )
 	{
-		$port = parse_url( $url, PHP_URL_PORT );
-		
-		if( $port === null )
-		{
-			$port = 80;
-		}
-		
 		$cachekey = 'ms15034_' . $url . '_' . $port;
 		$cachetime = 300; // 5 minutes
 		
 		$host = htmlspecialchars( $url, ENT_HTML5 );
+		
+		if( $port !== 80 )
+		{
+			$host .= ':' . $port;
+		}
 		
 		$memcached = new Memcached( );
 		$memcached->addServer( '/var/run/memcached/memcached.sock', 0 );

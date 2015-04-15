@@ -33,10 +33,16 @@
 	$host = false;
 	$status = false;
 	$url = filter_input( INPUT_GET, 'host', FILTER_SANITIZE_URL );
+	$port = 80;
 	
 	if( parse_url( $url, PHP_URL_SCHEME ) === null )
 	{
 		$url = 'http://' . $url;
+	}
+	
+	if( parse_url( $url, PHP_URL_PORT ) !== null )
+	{
+		$port = parse_url( $url, PHP_URL_PORT );
 	}
 	
 	$url = parse_url( $url, PHP_URL_HOST );
@@ -54,7 +60,7 @@
 		}
 		else
 		{
-			$fp = @fsockopen( $url, 80, $errno, $errstr, 5 );
+			$fp = @fsockopen( $url, $port, $errno, $errstr, 5 );
 			
 			if( $fp === false )
 			{

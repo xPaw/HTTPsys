@@ -21,8 +21,8 @@
 				case self::VULN       : return '<div class="alert alert-danger"><b>' . $host . '</b> is vulnerable.</div>';
 				case self::VULN_NOT_MS: return '<div class="alert alert-warning"><b>' . $host . '</b> could be vulnerable, but it doesn\'t appear to be using IIS.</div>';
 				case self::PATCHED    : return '<div class="alert alert-success"><b>' . $host . '</b> is patched.</div>';
-				case self::NOT_VULN   : return '<div class="alert alert-info">Cannot discern patch status of <b>' . $host . '</b>, and it doesn\'t appear to be using IIS.</div>';
-				case self::NOT_VULN_MS: return '<div class="alert alert-info">Cannot discern patch status of <b>' . $host . '</b>.</div>';
+				case self::NOT_VULN   : return '<div class="alert alert-info">Cannot discern patch status of <b>' . $host . '</b>, and it doesn\'t appear to be using IIS. This most likely means it is not vulnerable.</div>';
+				case self::NOT_VULN_MS: return '<div class="alert alert-info">Cannot discern patch status of <b>' . $host . '</b>. This most likely means it is not vulnerable.</div>';
 				case self::NOT_VULN_CF: return '<div class="alert alert-success"><b>' . $host . '</b> is using CloudFlare and is not vulnerable. <a href="https://blog.cloudflare.com/cloudflare-is-protected-against-cve-2015-1635/" target="_blank">See their blog post for more details.</a></div>';
 			}
 			

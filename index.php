@@ -80,6 +80,7 @@
 				$header = "GET / HTTP/1.1\r\n";
 				$header .= "Host: stuff\r\n";
 				$header .= "Range: bytes=0-18446744073709551615\r\n";
+				$header .= "User-Agent: HTTPsys online check\r\n";
 				$header .= "Connection: close\r\n\r\n";
 				
 				fwrite( $fp, $header );
